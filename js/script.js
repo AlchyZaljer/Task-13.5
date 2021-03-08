@@ -1,4 +1,5 @@
-let winnerFlag = 0;
+// инициализация флага для быстрого выхода из игры
+let quikEndFlag = 0;
 
 //действие по кнопке "Начать игру"
 document.querySelector('#startBtn').addEventListener('click', (event) => {
@@ -11,7 +12,7 @@ document.querySelector('#startBtn').addEventListener('click', (event) => {
 
     // стартовый таймер
     let startTimer = (num) => {
-        document.querySelector('#startTimer').textContent = num + '..';
+        document.querySelector('#startTimer').innerText = num + '..';
         num -= 1;
         if (num >= 0) {
             setTimeout(
@@ -24,7 +25,7 @@ document.querySelector('#startBtn').addEventListener('click', (event) => {
             document.querySelector('.settings').classList.toggle('unseen');
             document.querySelector('.game').classList.toggle('unseen');
             game(players); // запуск игры
-            document.querySelector('#startTimer').textContent = '';
+            document.querySelector('#startTimer').innerText = ``;
         }
     };
 
@@ -35,9 +36,9 @@ document.querySelector('#startBtn').addEventListener('click', (event) => {
 // действие по кнопке "Конец игры"
 document.querySelector('#endBtn').addEventListener('click', (event) => {
     // вывод сообщения перед выходом из игры
-    if (winnerFlag == 1) {
+    if (quikEndFlag == 1) {
         tikTakBoom.finish('won');
-        winnerFlag = 0;
+        quikEndFlag = 0;
         gameEnd();
     } else {
         tikTakBoom.finish();
@@ -66,6 +67,6 @@ let game = (players) => {
         document.querySelector('#answer2'),
         document.querySelector('#answer3'),
         document.querySelector('#answer4'),
-    )
+    );
     tikTakBoom.run();
 }
