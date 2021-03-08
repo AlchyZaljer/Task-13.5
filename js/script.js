@@ -1,3 +1,5 @@
+let winnerFlag = 0;
+
 //действие по кнопке "Начать игру"
 document.querySelector('#startBtn').addEventListener('click', (event) => {
     // получение количества игроков
@@ -32,18 +34,24 @@ document.querySelector('#startBtn').addEventListener('click', (event) => {
 
 // действие по кнопке "Конец игры"
 document.querySelector('#endBtn').addEventListener('click', (event) => {
-    tikTakBoom.finish(); // вывод сообщения о проигрыше
+    // вывод сообщения перед выходом из игры
+    if (winnerFlag == 1) {
+        tikTakBoom.finish('won');
+        winnerFlag = 0;
+        gameEnd();
+    } else {
+        tikTakBoom.finish();
+        setTimeout(gameEnd, 2000);
+    }
 
-    // таймер на скрытие интерфейса игры
-    setTimeout(
-    () => { 
+    // скрытие интерфейса игры
+    function gameEnd() { 
     document.querySelector('.game').classList.toggle('unseen');
     document.querySelector('.settings').classList.toggle('unseen');
     document.querySelector('#startBtn').classList.toggle('unseen');
     document.querySelector('#playersToggle').classList.toggle('unseen');
     document.querySelector('#gameStatusField').textContent = '';
-    }, 2000);
-    
+    };
 })
 
 // запуск игры

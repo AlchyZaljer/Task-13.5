@@ -81,20 +81,20 @@ tikTakBoom = {
 
     // распечатка вопроса и ответов
     printQuestion(task) {
-        let current = []; // инициализация массива ответов
-        current.push(task.answer1, task.answer2, task.answer3, task.answer4);
-        let result = []; // инициализация сортировочного массива
-        while (current.length > 0) {
-            const randomValue = randomIntNumber(current.length - 1);
-            const currentAnswer = current[randomValue]; // получение случайного элемента
-            result.push(currentAnswer); // добавление полученного элемента в result
-            current.splice(randomValue, 1); // удаление полученного элемента из current
+        let currentArr = []; // инициализация массива ответов
+        currentArr.push(task.answer1, task.answer2, task.answer3, task.answer4);
+        let resultArr = []; // инициализация сортировочного массива
+        while (currentArr.length > 0) {
+            const randomValue = randomIntNumber(currentArr.length - 1);
+            const currentAnswer = currentArr[randomValue]; // получение случайного элемента
+            resultArr.push(currentAnswer); // добавление полученного элемента в resultArr
+            currentArr.splice(randomValue, 1); // удаление полученного элемента из currentArr
         }
         // перезапись ответов в случайном порядке в текущий вопрос
-        task.answer1 = result[0];
-        task.answer2 = result[1];
-        task.answer3 = result[2];
-        task.answer4 = result[3];
+        task.answer1 = resultArr[0];
+        task.answer2 = resultArr[1];
+        task.answer3 = resultArr[2];
+        task.answer4 = resultArr[3];
 
         this.textFieldQuestion.innerText = task.question;
         this.textFieldAnswer1.innerText = task.answer1.value;
@@ -119,6 +119,7 @@ tikTakBoom = {
         }
         if (result === 'won') {
             this.gameStatusField.innerText = `Вы выиграли!`;
+            winnerFlag = 1;
             // this.gameStatusField.innerText = `Игрок №${this.state} выиграл!`;
         }
 
