@@ -2,9 +2,9 @@
 
 ### Авторы:
 
-* [https://github.com/AlchyZaljer] (тимлид)
+* [Наталья (тимлид)](https://github.com/AlchyZaljer)
 
-* [https://github.com/vnkgd]
+* [Владимир](https://github.com/vnkgd)
 
 ### Описание:
 
