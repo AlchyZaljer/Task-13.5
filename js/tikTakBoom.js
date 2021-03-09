@@ -45,9 +45,9 @@ tikTakBoom = {
             'player_4': this.boomTimer
         };
 
-        this.turnOn();
+        this.turnOn(); // запуск генерации вопроса
 
-        this.timer(this.state);
+        this.timer(); // запуск таймера для первого игрока
     },
 
     // генерация вопроса для игрока
@@ -65,6 +65,7 @@ tikTakBoom = {
         // удаление заданного вопроса из общего массива
         this.tasks.splice(taskNumber, 1);
 
+        // "прокрутка" счетчика состояния
         this.state = (this.state == this.countOfPlayers) ? 1 : this.state + 1;
     },
 
@@ -76,7 +77,7 @@ tikTakBoom = {
         this.textFieldAnswer3.removeEventListener('click', answer3);
         this.textFieldAnswer4.removeEventListener('click', answer4);
 
-        // вывод "Верно"\"Неверно" в поле статуса
+        // вывод "Верно"\"Неверно" в поле состояния
         if (this.currentTask[value].result) {
             this.gameStatusField.innerText = 'Верно!';
             //увеличение счетчика правильных ответов у текущего игрока
@@ -91,8 +92,6 @@ tikTakBoom = {
             //уменьшение времени на 5с у текущего игрока
             this.playersTimers[`player_${this.currentPlayer}`] -= 5;
         }
-
-        console.log(this.playersResults);
 
         // проверка на выход из игры
         if (this.playersResults[`player_${this.currentPlayer}`] < this.needRightAnswers) {
@@ -110,6 +109,7 @@ tikTakBoom = {
     printQuestion(task) {
         let currentArr = []; // инициализация массива ответов
         currentArr.push(task.answer1, task.answer2, task.answer3, task.answer4);
+
         let resultArr = []; // инициализация сортировочного массива
         while (currentArr.length > 0) {
             const randomValue = randomIntNumber(currentArr.length - 1);
@@ -117,6 +117,7 @@ tikTakBoom = {
             resultArr.push(currentAnswer); // добавление полученного элемента в resultArr
             currentArr.splice(randomValue, 1); // удаление полученного элемента из currentArr
         }
+
         // перезапись ответов в случайном порядке в текущий вопрос
         task.answer1 = resultArr[0];
         task.answer2 = resultArr[1];
@@ -159,17 +160,17 @@ tikTakBoom = {
 
     // действие по клику
     clicker(value) {
-        clearTimeout(this.timerId); // остановка таймера
+        clearTimeout(this.timerId); // остановка текущего таймера
 
         // сохранение текущего показателя таймера
         let timerSaver = this.timerField.innerText; 
+
         // получение секунд и минут из сохраненного значения
         let sec = parseInt(timerSaver.substr(3));
         let min = parseInt(timerSaver.substr(0,2));
 
         // запись числового значения времени у данного игрока
         this.playersTimers[`player_${this.currentPlayer}`] = min * 60 + sec;
-        console.log(this.playersTimers);
 
         this.turnOff(`answer${value}`); // переход к обработке ответа
 
@@ -190,7 +191,7 @@ tikTakBoom = {
             this.timerField.innerText = `${min}:${sec}`;
 
             if (this.boomTimer > 0) {
-                this.timerId = setTimeout(
+                this.timerId = setTimeout( // сохранение ID таймера для последующей остановки
                     () => {
                         this.timer()
                     },

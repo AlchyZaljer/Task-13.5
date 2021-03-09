@@ -105,35 +105,3 @@ body {
 .row-3 {
     margin-bottom: 2vh;
 }
-
-/* body {
-    font-family: 'Share Tech Mono', monospace;
-}
-
-.timer-output{
-    width: 200px;
-    background: #222;
-    color: darkred;
-    padding: 16px 8px;
-    font-size: 64px;
-    text-align: center;
-    line-height: 1;
-    user-select: none;
-}
-
-.timer-output-wrapper{
-    width: calc(100% - 24px);
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    margin: 12px;
-}
-
-.techass{
-    margin-left: 30px;
-    margin-top: 200px;
-    font-family: Source Sans Pro,sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-} */
