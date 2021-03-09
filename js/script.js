@@ -56,6 +56,7 @@ document.querySelector('#endBtn').addEventListener('click', (event) => {
 
     // смена интерфейса игры на стартовое меню
     function gameEnd() {
+        document.querySelector('#gameStatusField').innerText = '';
         document.querySelector('.game').classList.toggle('unseen');
         document.querySelector('.settings').classList.toggle('unseen');
         document.querySelector('#startBtn').classList.toggle('unseen');
