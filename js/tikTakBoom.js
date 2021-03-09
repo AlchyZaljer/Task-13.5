@@ -14,9 +14,6 @@ tikTakBoom = {
         this.boomTimer = 30;
         this.countOfPlayers = players;
         this.tasks = JSON.parse(tasks);
-
-        console.log(this.tasks);
-
         this.timerField = timerField;
         this.gameStatusField = gameStatusField;
         this.textFieldQuestion = textFieldQuestion;
@@ -38,7 +35,6 @@ tikTakBoom = {
             'player_3': 0,
             'player_4': 0
         };
-        console.log(this.playersResults);
 
         this.turnOn();
 
@@ -65,6 +61,12 @@ tikTakBoom = {
 
     // обработка ответа на вопрос
     turnOff(value) {
+        // снятие действий по кликам
+        this.textFieldAnswer1.removeEventListener('click', answer1);
+        this.textFieldAnswer2.removeEventListener('click', answer2);
+        this.textFieldAnswer3.removeEventListener('click', answer3);
+        this.textFieldAnswer4.removeEventListener('click', answer4);
+
         // вывод "Верно"\"Неверно" в поле статуса
         if (this.currentTask[value].result) {
             this.gameStatusField.innerText = 'Верно!';
@@ -88,10 +90,7 @@ tikTakBoom = {
             this.finish('won');
         }
 
-        this.textFieldAnswer1.removeEventListener('click', answer1);
-        this.textFieldAnswer2.removeEventListener('click', answer2);
-        this.textFieldAnswer3.removeEventListener('click', answer3);
-        this.textFieldAnswer4.removeEventListener('click', answer4);
+        
     },
 
     // распечатка вопроса и ответов
@@ -140,7 +139,6 @@ tikTakBoom = {
 
         // обнуление данных
         this.state = 0;
-
         this.textFieldQuestion.innerText = ``;
         this.textFieldAnswer1.innerText = ``;
         this.textFieldAnswer2.innerText = ``;
