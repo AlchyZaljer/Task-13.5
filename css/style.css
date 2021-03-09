@@ -12,7 +12,6 @@ body {
     display: none;
 }
 
-
 #playersToggle {
     margin-top: 3vh;
     font-size: 3vh;
@@ -22,12 +21,31 @@ body {
     color: #0064ff;
 }
 
+#timeToggleLable {
+    font-size: 3vh;
+    padding: 1vh; 
+    color: #0064ff;
+}
+
+#timeToggleField {
+    font-size: 2vh;
+    padding: 1vh; 
+    border: 5px #0064ff solid;
+    border-radius: 30px;
+    color: #0064ff;
+    background-color: white;
+}
+
 .statusField, #startBtn {
     background-color: inherit;
     border: 5px #0064ff solid;
     border-radius: 30px;
     color: white;
     text-transform: uppercase;
+}
+
+#startBtn {
+    margin-bottom: 4vh;
 }
 
 #startBtn:hover {

@@ -3,6 +3,7 @@ tikTakBoom = {
     init(
         tasks,
         players,
+        time,
         timerField,
         gameStatusField,
         textFieldQuestion,
@@ -11,7 +12,7 @@ tikTakBoom = {
         textFieldAnswer3,
         textFieldAnswer4
     ) {
-        this.boomTimer = 30;
+        this.boomTimer = time;
         this.countOfPlayers = players;
         this.tasks = JSON.parse(tasks);
         this.timerField = timerField;
@@ -81,8 +82,14 @@ tikTakBoom = {
             //увеличение счетчика правильных ответов у текущего игрока
             this.playersResults[`player_${this.currentPlayer}`] += 1;
 
+            //увеличение времени на 5с у текущего игрока
+            this.playersTimers[`player_${this.currentPlayer}`] += 5;
+
         } else {
             this.gameStatusField.innerText = 'Неверно!';
+
+            //уменьшение времени на 5с у текущего игрока
+            this.playersTimers[`player_${this.currentPlayer}`] -= 5;
         }
 
         console.log(this.playersResults);
@@ -161,7 +168,7 @@ tikTakBoom = {
         let min = parseInt(timerSaver.substr(0,2));
 
         // запись числового значения времени у данного игрока
-        this.playersTimers[`player_${this.currentPlayer}`] = min % 60 + sec;
+        this.playersTimers[`player_${this.currentPlayer}`] = min * 60 + sec;
         console.log(this.playersTimers);
 
         this.turnOff(`answer${value}`); // переход к обработке ответа

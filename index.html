@@ -30,12 +30,23 @@
                         </div>
                     </div>
 
+                    <!-- выбор времени -->
+                    <div class="row timeToggle">
+                        <div class="offset-3 col-2">
+                            <label id="timeToggleLable" for="timeToggleField">Таймер:</label>
+                        </div>
+                        <!-- поле воода времени -->
+                        <div class="col-2">
+                            <input type="time" value="00:30" class="form-select" id="timeToggleField">
+                        </div>
+                    </div>
+                    
                     <!-- выбор количества игроков -->
                     <div class="row">
                         <div class="offset-3 col-6">
                             <select class="form-select" id="playersToggle">
                                 <!-- по умолчанию - 2 -->
-                                <option value="2" selected disabled hidden>Выберите количество игроков </option>
+                                <option value="2" selected disabled>Выберите количество игроков</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
