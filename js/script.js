@@ -62,7 +62,7 @@ document.querySelector('#endBtn').addEventListener('click', (event) => {
         document.querySelector('#startBtn').classList.toggle('unseen');
         document.querySelector('#playersToggle').classList.toggle('unseen');
         document.querySelector('#playersToggle').value= "2";
-        document.querySelector('#timeToggleField').innerText = '00:30';
+        document.querySelector('#timeToggleField').value = '00:30';
         document.querySelector('.timeToggle').classList.toggle('unseen');
     };
 })
