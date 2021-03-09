@@ -30,7 +30,6 @@ document.querySelector('#startBtn').addEventListener('click', (event) => {
     };
 
     startTimer(3); //запуск таймера
-    
 })
 
 // действие по кнопке "Конец игры"

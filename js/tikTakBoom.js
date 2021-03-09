@@ -26,7 +26,7 @@ tikTakBoom = {
 
     // начало игры
     run() {
-        this.state = 1;
+        this.state = 1; // счетчик состояния
 
         // счетчик правильных ответов каждого игрока
         this.playersResults = {
@@ -36,9 +36,17 @@ tikTakBoom = {
             'player_4': 0
         };
 
+        // счетчик времени у каждого игрока
+        this.playersTimers = {
+            'player_1': this.boomTimer,
+            'player_2': this.boomTimer,
+            'player_3': this.boomTimer,
+            'player_4': this.boomTimer
+        };
+
         this.turnOn();
 
-        this.timer();
+        this.timer(this.state);
     },
 
     // генерация вопроса для игрока
@@ -89,8 +97,6 @@ tikTakBoom = {
         } else {
             this.finish('won');
         }
-
-        
     },
 
     // распечатка вопроса и ответов
@@ -118,21 +124,19 @@ tikTakBoom = {
 
         this.currentTask = task;
 
-        this.textFieldAnswer1.addEventListener('click', answer1 = () => this.turnOff('answer1'));
-        this.textFieldAnswer2.addEventListener('click', answer2 = () => this.turnOff('answer2'));
-        this.textFieldAnswer3.addEventListener('click', answer3 = () => this.turnOff('answer3'));
-        this.textFieldAnswer4.addEventListener('click', answer4 = () => this.turnOff('answer4'));
+        this.textFieldAnswer1.addEventListener('click', answer1 = () => this.clicker(1));
+        this.textFieldAnswer2.addEventListener('click', answer2 = () => this.clicker(2));
+        this.textFieldAnswer3.addEventListener('click', answer3 = () => this.clicker(3));
+        this.textFieldAnswer4.addEventListener('click', answer4 = () => this.clicker(4));
     },
 
     // генерация окна с итогами игры
     finish(result = 'lose') {
-        
+        // вывод сообщения о выигрыше/проигрыше игрока
         if (result === 'lose') {
-            // this.gameStatusField.innerText = `Вы проиграли!`;
             this.gameStatusField.innerText = `Игрок №${this.currentPlayer} проиграл! `;
         }
         if (result === 'won') {
-            // this.gameStatusField.innerText = `Вы выиграли!`;
             quikEndFlag = 1;
             this.gameStatusField.innerText = `Игрок №${this.currentPlayer} выиграл!`;
         }
@@ -144,14 +148,33 @@ tikTakBoom = {
         this.textFieldAnswer2.innerText = ``;
         this.textFieldAnswer3.innerText = ``;
         this.textFieldAnswer4.innerText = ``;
+    },
 
-        // console.log(this);
+    // действие по клику
+    clicker(value) {
+        clearTimeout(this.timerId); // остановка таймера
+
+        // сохранение текущего показателя таймера
+        let timerSaver = this.timerField.innerText; 
+        // получение секунд и минут из сохраненного значения
+        let sec = parseInt(timerSaver.substr(3));
+        let min = parseInt(timerSaver.substr(0,2));
+
+        // запись числового значения времени у данного игрока
+        this.playersTimers[`player_${this.currentPlayer}`] = min % 60 + sec;
+        console.log(this.playersTimers);
+
+        this.turnOff(`answer${value}`); // переход к обработке ответа
+
+        // изменение значения таймера
+        this.boomTimer = this.playersTimers[`player_${this.currentPlayer}`];
+        
+        this.timer(); // запуск таймера для следующего игрока     
     },
 
     // таймер
     timer() {
         if (this.state) {
-            
             this.boomTimer -= 1;
             let sec = this.boomTimer % 60;
             let min = (this.boomTimer - sec) / 60;
@@ -160,7 +183,7 @@ tikTakBoom = {
             this.timerField.innerText = `${min}:${sec}`;
 
             if (this.boomTimer > 0) {
-                let timerId = setTimeout(
+                this.timerId = setTimeout(
                     () => {
                         this.timer()
                     },
