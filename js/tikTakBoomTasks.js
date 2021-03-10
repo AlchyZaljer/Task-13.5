@@ -209,7 +209,7 @@ const tasks = `
             "answer2": { "result": false, "value": "Рим" },
             "answer3": { "result": false, "value": "Майкоп" },
             "answer4": { "result": false, "value": "Тбилиси" }
-        }
+        },
         {
             "question": "Какой тэг HTML формирует параграф?",
             "answer1": { "result": false, "value": "<br>" },
