@@ -1,3 +1,5 @@
+// val как то надо импортировать данные о звуке // import * as snd from './snd.js';
+
 // инициализация флага для быстрого выхода из игры
 let quikEndFlag = 0;
 
@@ -34,12 +36,14 @@ document.querySelector('#startBtn').addEventListener('click', (event) => {
             document.querySelector('.settings').classList.toggle('unseen');
             document.querySelector('.game').classList.toggle('unseen');
             game(players, time); // запуск игры
-            document.querySelector('#startTimer').innerText = ``;
+            document.querySelector('#startTimer').innerText = ``;  
         }
     };
 
     startTimer(3); //запуск таймера
 })
+
+
 
 // действие по кнопке "Конец игры"
 document.querySelector('#endBtn').addEventListener('click', (event) => {
@@ -49,6 +53,8 @@ document.querySelector('#endBtn').addEventListener('click', (event) => {
         tikTakBoom.finish('won');
         quikEndFlag = 0;
         gameEnd();
+        // Val добавил звук
+        boomSound;
     } else {
         tikTakBoom.finish();
         setTimeout(gameEnd, 2000);

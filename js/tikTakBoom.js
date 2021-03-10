@@ -143,10 +143,12 @@ tikTakBoom = {
         // вывод сообщения о выигрыше/проигрыше игрока
         if (result === 'lose') {
             this.gameStatusField.innerText = `Игрок №${this.currentPlayer} проиграл! `;
+            // Val как то надо вывести сюда звук бум. const boomSound = new Audio('../sound/Boom.mp3'); и вызвать этот звук snd.sound.boom();
         }
         if (result === 'won') {
             quikEndFlag = 1;
             this.gameStatusField.innerText = `Игрок №${this.currentPlayer} выиграл!`;
+            // Val как то надо вывести сюда звук вин. const winSound = new Audio('../sound/Win.mp3'); и вызвать этот звук snd.sound.win(); и тоже самое на ошибку, а во время игры: 
         }
 
         // обнуление данных
