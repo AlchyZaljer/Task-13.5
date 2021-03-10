@@ -79,7 +79,7 @@ body {
 
 #questionField {  
     background: inherit;  
-    font-size: 5vh;
+    font-size: 4vh;
     padding: 2vh 1vw 2vh 1vw; 
     text-align: center;
     border: 5px #0064ff solid;
@@ -92,7 +92,7 @@ body {
 }
 
 .answer {
-    font-size: 3vh;
+    font-size: 2vh;
     padding-bottom: 5vh;
     padding-left: 4vw;
     vertical-align: middle;
