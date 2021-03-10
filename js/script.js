@@ -61,7 +61,7 @@ document.querySelector('#endBtn').addEventListener('click', (event) => {
         document.querySelector('.settings').classList.toggle('unseen');
         document.querySelector('#startBtn').classList.toggle('unseen');
         document.querySelector('#playersToggle').classList.toggle('unseen');
-        document.querySelector('#playersToggle').value= "2";
+        document.querySelector('#playersToggle').value= "1";
         document.querySelector('#timeToggleField').value = '00:30';
         document.querySelector('.timeToggle').classList.toggle('unseen');
     };
