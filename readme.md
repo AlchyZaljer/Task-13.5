@@ -6,7 +6,7 @@
 
 * [Владимир](https://github.com/vnkgd)
 
-тест
+* [Иван](https://github.com/VanChester13)
 
 ### Описание:
 
